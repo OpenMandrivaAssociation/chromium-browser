@@ -8,7 +8,8 @@ Source0: chromium-%{version}.tar.bz2
 Source1: chromium-wrapper
 #Source1: depot_tools.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: bison, flex, gtk2-devel, atk-devel
+BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat1-devel, gperf
+BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa2-devel
 
 %description
 Google Chrome is a browser that combines a minimal design with sophisticated
