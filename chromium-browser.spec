@@ -1,6 +1,8 @@
+%define svn_revision 32802
+
 Name: chromium-browser
-Version: 2.0.249.0.r32802
-Release: %mkrel 2
+Version: 4.0.249.0.r%{svn_revision}
+Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group:Applications/Internet
 License: BSD, LGPL
@@ -16,7 +18,7 @@ Google Chrome is a browser that combines a minimal design with sophisticated
 technology to make the web faster, safer, and easier.
 
 %prep
-%setup -q -n chromium-%{version}
+%setup -q -n chromium-%{svn_revision}
 
 %build
 %make chrome BUILDTYPE=Release
