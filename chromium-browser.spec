@@ -11,7 +11,7 @@ Source1: chromium-wrapper
 Source2: chromium-browser.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat1-devel, gperf
-BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa2-devel
+BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 
 %description
 Google Chrome is a browser that combines a minimal design with sophisticated
