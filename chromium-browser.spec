@@ -10,7 +10,7 @@ Source0: chromium-%{version}.tar.bz2
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat1-devel, gperf
+BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 
 %description
