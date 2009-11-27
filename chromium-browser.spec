@@ -19,6 +19,7 @@ technology to make the web faster, safer, and easier.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
+echo %{svn_revision} > build/LASTCHANGE.in
 
 %build
 %make chrome BUILDTYPE=Release
