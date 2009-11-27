@@ -12,6 +12,7 @@ Source2: chromium-browser.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
+ExclusiveArch: i586
 
 %description
 Google Chrome is a browser that combines a minimal design with sophisticated
