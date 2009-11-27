@@ -4,7 +4,7 @@ Name: chromium-browser
 Version: 4.0.249.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
-Group:Applications/Internet
+Group: Networking/WWW
 License: BSD, LGPL
 Source0: chromium-%{version}.tar.bz2
 Source1: chromium-wrapper
