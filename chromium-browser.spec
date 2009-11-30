@@ -15,7 +15,7 @@ BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 ExclusiveArch: i586
 
 %description
-Google Chrome is a browser that combines a minimal design with sophisticated
+Chromium is a browser that combines a minimal design with sophisticated
 technology to make the web faster, safer, and easier.
 
 %prep
