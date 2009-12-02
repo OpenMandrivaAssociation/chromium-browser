@@ -2,7 +2,7 @@
 
 Name: chromium-browser
 Version: 4.0.249.0.r%{svn_revision}
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
@@ -13,7 +13,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 BuildRequires: libglib2-devel
-ExclusiveArch: i586
+ExclusiveArch: i586 x86_64 arm
 
 %description
 Chromium is a browser that combines a minimal design with sophisticated
@@ -24,6 +24,8 @@ technology to make the web faster, safer, and easier.
 echo %{svn_revision} > build/LASTCHANGE.in
 
 %build
+export GYP_GENERATORS=make
+build/gyp_chromium --depth=.
 %make chrome BUILDTYPE=Release
 
 %install
