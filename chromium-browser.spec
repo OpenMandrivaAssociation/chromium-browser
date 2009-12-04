@@ -2,7 +2,7 @@
 
 Name: chromium-browser
 Version: 4.0.249.0.r%{svn_revision}
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
@@ -25,7 +25,10 @@ echo %{svn_revision} > build/LASTCHANGE.in
 
 %build
 export GYP_GENERATORS=make
-build/gyp_chromium --depth=.
+build/gyp_chromium --depth=. \
+	-D linux_sandbox_path=%{_libdir}/chromium-browser/chrome-sandbox \
+	-D linux_sandbox_chrome_path=%{_libdir}/chromium-browser/chrome
+
 %make chrome chrome_sandbox BUILDTYPE=Release
 
 %install
@@ -37,7 +40,7 @@ mkdir -p %{buildroot}%{_libdir}/chromium-browser/themes
 mkdir -p %{buildroot}%{_mandir}/man1
 install -m 755 %{_sourcedir}/chromium-wrapper %{buildroot}%{_libdir}/chromium-browser/
 install -m 755 out/Release/chrome %{buildroot}%{_libdir}/chromium-browser/
-install -m 4755 out/Release/chrome_sandbox %{buildroot}%{_libdir}/chromium-browser/
+install -m 4755 out/Release/chrome_sandbox %{buildroot}%{_libdir}/chromium-browser/chrome-sandbox
 install -m 644 out/Release/chromium-browser.1 %{buildroot}%{_mandir}/man1/
 install -m 644 out/Release/chrome.pak %{buildroot}%{_libdir}/chromium-browser/
 install -m 755 out/Release/libffmpegsumo.so %{buildroot}%{_libdir}/chromium-browser/
@@ -66,7 +69,7 @@ rm -rf %{buildroot}
 %{_bindir}/chromium-browser
 %{_libdir}/chromium-browser/chromium-wrapper
 %{_libdir}/chromium-browser/chrome
-%{_libdir}/chromium-browser/chrome_sandbox
+%{_libdir}/chromium-browser/chrome-sandbox
 %{_libdir}/chromium-browser/chrome.pak
 %{_libdir}/chromium-browser/libffmpegsumo.so
 %{_libdir}/chromium-browser/locales
