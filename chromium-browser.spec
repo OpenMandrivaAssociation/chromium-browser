@@ -2,11 +2,11 @@
 
 Name: chromium-browser
 Version: 4.0.249.0.r%{svn_revision}
-Release: %mkrel 4
+Release: %mkrel 5
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
-Source0: chromium-%{version}.tar.bz2
+Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -18,6 +18,9 @@ ExclusiveArch: i586 x86_64 arm
 %description
 Chromium is a browser that combines a minimal design with sophisticated
 technology to make the web faster, safer, and easier.
+
+This is an unstable development version of the Chromium browser. It may
+contain bugs or partially implemented features.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
@@ -41,7 +44,7 @@ mkdir -p %{buildroot}%{_mandir}/man1
 install -m 755 %{_sourcedir}/chromium-wrapper %{buildroot}%{_libdir}/chromium-browser/
 install -m 755 out/Release/chrome %{buildroot}%{_libdir}/chromium-browser/
 install -m 4755 out/Release/chrome_sandbox %{buildroot}%{_libdir}/chromium-browser/chrome-sandbox
-install -m 644 out/Release/chromium-browser.1 %{buildroot}%{_mandir}/man1/
+install -m 644 out/Release/chromium-browser.1 %{buildroot}%{_mandir}/man1/chromium-browser.1
 install -m 644 out/Release/chrome.pak %{buildroot}%{_libdir}/chromium-browser/
 install -m 755 out/Release/libffmpegsumo.so %{buildroot}%{_libdir}/chromium-browser/
 install -m 644 out/Release/locales/*.pak %{buildroot}%{_libdir}/chromium-browser/locales
