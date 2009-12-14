@@ -1,8 +1,8 @@
-%define svn_revision 32802
+%define svn_revision 34457
 
 Name: chromium-browser
-Version: 4.0.249.0.r%{svn_revision}
-Release: %mkrel 5
+Version: 4.0.270.0.r%{svn_revision}
+Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
@@ -44,7 +44,7 @@ mkdir -p %{buildroot}%{_mandir}/man1
 install -m 755 %{_sourcedir}/chromium-wrapper %{buildroot}%{_libdir}/chromium-browser/
 install -m 755 out/Release/chrome %{buildroot}%{_libdir}/chromium-browser/
 install -m 4755 out/Release/chrome_sandbox %{buildroot}%{_libdir}/chromium-browser/chrome-sandbox
-install -m 644 out/Release/chromium-browser.1 %{buildroot}%{_mandir}/man1/chromium-browser.1
+install -m 644 out/Release/chrome.1 %{buildroot}%{_mandir}/man1/chromium-browser.1
 install -m 644 out/Release/chrome.pak %{buildroot}%{_libdir}/chromium-browser/
 install -m 755 out/Release/libffmpegsumo.so %{buildroot}%{_libdir}/chromium-browser/
 install -m 644 out/Release/locales/*.pak %{buildroot}%{_libdir}/chromium-browser/locales
