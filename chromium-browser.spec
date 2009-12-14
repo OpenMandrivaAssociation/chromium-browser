@@ -12,7 +12,8 @@ Source2: chromium-browser.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
-BuildRequires: libglib2-devel, libbzip2-devel
+BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
+Buildrequires: libjpeg-devel
 ExclusiveArch: i586 x86_64 arm
 
 %description
