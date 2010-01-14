@@ -25,7 +25,7 @@ contain bugs or partially implemented features.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
-echo %{svn_revision} > build/LASTCHANGE.in
+echo "%{svn_revision}-%{release}" > build/LASTCHANGE.in
 
 %build
 export GYP_GENERATORS=make
