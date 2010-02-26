@@ -1,7 +1,7 @@
-%define svn_revision 36160
+%define svn_revision 40130
 
 Name: chromium-browser
-Version: 4.0.298.0.r%{svn_revision}
+Version: 5.0.339.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
@@ -14,6 +14,7 @@ BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
+BuildRequires: libxscrnsaver-devel
 ExclusiveArch: i586 x86_64 arm
 
 %description
