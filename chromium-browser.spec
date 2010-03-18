@@ -2,13 +2,14 @@
 
 Name: chromium-browser
 Version: 5.0.339.0.r%{svn_revision}
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
+Patch0: chromium-40130-sse2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
@@ -26,6 +27,7 @@ contain bugs or partially implemented features.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
+%patch0 -p1 -b .sse2
 echo "%{svn_revision}-%{release}" > build/LASTCHANGE.in
 
 %build
@@ -84,4 +86,3 @@ rm -rf %{buildroot}
 %{_mandir}/man1/chromium-browser*
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
-
