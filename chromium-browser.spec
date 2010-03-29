@@ -2,7 +2,7 @@
 
 Name: chromium-browser
 Version: 5.0.363.0.r%{svn_revision}
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
@@ -15,7 +15,7 @@ BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
-BuildRequires: libxscrnsaver-devel
+BuildRequires: libxscrnsaver-devel, libdbus-glib-devel
 #BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
 
