@@ -1,8 +1,8 @@
-%define svn_revision 42621
+%define svn_revision 44285
 
 Name: chromium-browser
-Version: 5.0.363.0.r%{svn_revision}
-Release: %mkrel 2
+Version: 5.0.376.0.r%{svn_revision}
+Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
