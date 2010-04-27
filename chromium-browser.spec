@@ -1,7 +1,7 @@
-%define svn_revision 44285
+%define svn_revision 45688
 
 Name: chromium-browser
-Version: 5.0.376.0.r%{svn_revision}
+Version: 5.0.389.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
@@ -9,7 +9,7 @@ License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
-Patch0: chromium-40130-sse2.patch
+Patch0: chromium-45458-sse2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
