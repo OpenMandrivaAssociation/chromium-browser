@@ -1,7 +1,7 @@
-%define svn_revision 45688
+%define svn_revision 48048
 
 Name: chromium-browser
-Version: 5.0.389.0.r%{svn_revision}
+Version: 6.0.415.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
@@ -9,13 +9,12 @@ License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
-Patch0: chromium-45458-sse2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
-BuildRequires: libxscrnsaver-devel, libdbus-glib-devel
+BuildRequires: libxscrnsaver-devel, libdbus-glib-devel, libcups2-devel
 #BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
 
@@ -28,14 +27,15 @@ contain bugs or partially implemented features.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
-%patch0 -p1 -b .sse2
 echo "%{svn_revision}-%{release}" > build/LASTCHANGE.in
 
 %build
 export GYP_GENERATORS=make
 build/gyp_chromium --depth=. \
 	-D linux_sandbox_path=%{_libdir}/chromium-browser/chrome-sandbox \
-	-D linux_sandbox_chrome_path=%{_libdir}/chromium-browser/chrome
+	-D linux_sandbox_chrome_path=%{_libdir}/chromium-browser/chrome \
+	-D disable_sse2=1 \
+	-D release_extra_cflags="-march=i586"
 
 %make chrome chrome_sandbox BUILDTYPE=Release
 
