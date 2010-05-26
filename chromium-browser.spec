@@ -34,8 +34,10 @@ export GYP_GENERATORS=make
 build/gyp_chromium --depth=. \
 	-D linux_sandbox_path=%{_libdir}/chromium-browser/chrome-sandbox \
 	-D linux_sandbox_chrome_path=%{_libdir}/chromium-browser/chrome \
+%ifarch i586
 	-D disable_sse2=1 \
 	-D release_extra_cflags="-march=i586"
+%endif
 
 %make chrome chrome_sandbox BUILDTYPE=Release
 
