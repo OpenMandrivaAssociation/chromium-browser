@@ -1,7 +1,7 @@
-%define svn_revision 48048
+%define svn_revision 50125
 
 Name: chromium-browser
-Version: 6.0.415.0.r%{svn_revision}
+Version: 6.0.441.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
@@ -56,9 +56,8 @@ install -m 644 out/Release/chrome.pak %{buildroot}%{_libdir}/chromium-browser/
 install -m 755 out/Release/libffmpegsumo.so %{buildroot}%{_libdir}/chromium-browser/
 install -m 644 out/Release/locales/*.pak %{buildroot}%{_libdir}/chromium-browser/locales
 install -m 644 out/Release/xdg-settings %{buildroot}%{_libdir}/chromium-browser/
+install -m 644 out/Release/resources.pak %{buildroot}%{_libdir}/chromium-browser/
 ln -s %{_libdir}/chromium-browser/chromium-wrapper %{buildroot}%{_bindir}/chromium-browser
-find out/Release/resources/ -name "*.d" -exec rm {} \;
-cp -r out/Release/resources %{buildroot}%{_libdir}/chromium-browser/
 
 # desktop file
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -83,7 +82,7 @@ rm -rf %{buildroot}
 %{_libdir}/chromium-browser/chrome.pak
 %{_libdir}/chromium-browser/libffmpegsumo.so
 %{_libdir}/chromium-browser/locales
-%{_libdir}/chromium-browser/resources
+%{_libdir}/chromium-browser/resources.pak
 %{_libdir}/chromium-browser/themes
 %{_libdir}/chromium-browser/xdg-settings
 %{_mandir}/man1/chromium-browser*
