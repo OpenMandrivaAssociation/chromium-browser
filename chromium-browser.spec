@@ -15,6 +15,7 @@ BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
 BuildRequires: libxscrnsaver-devel, libdbus-glib-devel, libcups-devel
+BuildRequires: libgnome-keyring-devel
 #BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
 
@@ -34,6 +35,7 @@ export GYP_GENERATORS=make
 build/gyp_chromium --depth=. \
 	-D linux_sandbox_path=%{_libdir}/chromium-browser/chrome-sandbox \
 	-D linux_sandbox_chrome_path=%{_libdir}/chromium-browser/chrome \
+	-D linux_link_gnome_keyring=0 \
 %ifarch i586
 	-D disable_sse2=1 \
 	-D release_extra_cflags="-march=i586"
