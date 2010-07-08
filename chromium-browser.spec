@@ -1,7 +1,7 @@
-%define svn_revision 50125
+%define svn_revision 51426
 
 Name: chromium-browser
-Version: 6.0.441.0.r%{svn_revision}
+Version: 6.0.454.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
