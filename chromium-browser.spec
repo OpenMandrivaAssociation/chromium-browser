@@ -9,6 +9,7 @@ License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
+Patch0: chromium-59943-typecast.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
@@ -28,6 +29,7 @@ contain bugs or partially implemented features.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
+%patch0 -p1 -b .typecast
 echo "%{svn_revision}-%{release}" > build/LASTCHANGE.in
 
 %build
