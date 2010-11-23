@@ -31,9 +31,7 @@ contain bugs or partially implemented features.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
-%ifarch x86_64
 %patch0 -p1 -b .typecast
-%endif
 %patch1 -p1 -b .skip-builder-tests
 echo "%{svn_revision}-%{release}" > build/LASTCHANGE.in
 
