@@ -1,7 +1,7 @@
-%define svn_revision 62433
+%define svn_revision 66965
 
 Name: chromium-browser
-Version: 8.0.554.0.r%{svn_revision}
+Version: 9.0.592.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
@@ -9,14 +9,16 @@ License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
-Patch0: chromium-59943-typecast.patch
+Source100: scoped_nsautorelease_pool.h
+Patch0: chromium-66965-typecast.patch
+Patch1: chromium-66422-skip-builder-tests.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
 BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
 BuildRequires: libxscrnsaver-devel, libdbus-glib-devel, libcups-devel
-BuildRequires: libgnome-keyring-devel
+BuildRequires: libgnome-keyring-devel libvpx-devel libxtst-devel
 #BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
 
@@ -29,8 +31,18 @@ contain bugs or partially implemented features.
 
 %prep
 %setup -q -n chromium-%{svn_revision}
+%ifarch x86_64
 %patch0 -p1 -b .typecast
+%endif
+%patch1 -p1 -b .skip-builder-tests
 echo "%{svn_revision}-%{release}" > build/LASTCHANGE.in
+
+install -D %{_sourcedir}/scoped_nsautorelease_pool.h base/mac/scoped_nsautorelease_pool.h
+
+# Temporary fix for libvpx
+mkdir third_party/libvpx/include
+ln -s /usr/include/vpx third_party/libvpx/include
+
 
 %build
 export GYP_GENERATORS=make
