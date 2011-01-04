@@ -15,11 +15,12 @@ Patch0: chromium-66422-skip-builder-tests.patch
 #Patch0: chromium-69969-skip-builder-tests.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
-BuildRequires: libnspr-devel, libnss-devel, libGConf2-devel, libalsa-devel
+BuildRequires: libnspr-devel, libnss-devel, libalsa-devel
 BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
 BuildRequires: libxscrnsaver-devel, libdbus-glib-devel, libcups-devel
 BuildRequires: libgnome-keyring-devel libvpx-devel libxtst-devel
+BuildRequires: libxslt-devel libsqlite3-devel libxml2-devel
 #BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
 
