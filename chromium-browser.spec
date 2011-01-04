@@ -2,7 +2,7 @@
 
 Name: chromium-browser
 Version: 9.0.592.0.r%{svn_revision}
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
