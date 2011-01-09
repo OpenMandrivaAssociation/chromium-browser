@@ -1,18 +1,17 @@
-%define svn_revision 66965
+%define svn_revision 70630
 
 Name: chromium-browser
-Version: 9.0.592.0.r%{svn_revision}
-Release: %mkrel 3
+Version: 10.0.630.0.r%{svn_revision}
+Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
-Source3: webstore_icon.png
 Source100: scoped_nsautorelease_pool.h
-Patch0: chromium-66422-skip-builder-tests.patch
-#Patch0: chromium-69969-skip-builder-tests.patch
+Patch0: chromium-69969-skip-builder-tests.patch
+Patch1: chromium-69746-get-vp8-cx-algo-address.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libalsa-devel
@@ -34,15 +33,13 @@ contain bugs or partially implemented features.
 %prep
 %setup -q -n chromium-%{svn_revision}
 %patch0 -p1 -b .skip-builder-tests
+%patch1 -p1 -b .get-vp8-cx-algo-address
 echo "%{svn_revision}" > build/LASTCHANGE.in
 
 # Hard code extra version
 FILE=chrome/browser/platform_util_common_linux.cc
 sed -i.orig -e 's/getenv("CHROME_VERSION_EXTRA")/"%{product_vendor} %{product_version}"/' $FILE
 cmp $FILE $FILE.orig && exit 1
-
-# New webstore icon
-install -m644 %{_sourcedir}/webstore_icon.png chrome/browser/resources/ntp/web_store_icon.png
 
 install -D %{_sourcedir}/scoped_nsautorelease_pool.h base/mac/scoped_nsautorelease_pool.h
 
