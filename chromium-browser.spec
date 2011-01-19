@@ -19,7 +19,8 @@ BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
 BuildRequires: libxscrnsaver-devel, libdbus-glib-devel, libcups-devel
 BuildRequires: libgnome-keyring-devel libvpx-devel libxtst-devel
-BuildRequires: libxslt-devel libsqlite3-devel libxml2-devel
+BuildRequires: libxslt-devel libxml2-devel
+#BuildRequires: libsqlite3-devel
 #BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
 
@@ -55,14 +56,15 @@ build/gyp_chromium --depth=. \
 	-D linux_sandbox_chrome_path=%{_libdir}/chromium-browser/chrome \
 	-D linux_link_gnome_keyring=0 \
 	-D use_gconf=0 \
-	-D use_system_sqlite=1 \
-	-D use_system_libxml=1 \
 	-D werror='' \
+	-D use_system_sqlite=0 \
+	-D use_system_libxml=1 \
 %ifarch i586
 	-D disable_sse2=1 \
 	-D release_extra_cflags="-march=i586"
 %endif
 
+# Note: DON'T use system sqlite (3.7.3) -- it breaks history search
 
 %make chrome chrome_sandbox BUILDTYPE=Release
 
