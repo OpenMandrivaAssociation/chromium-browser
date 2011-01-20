@@ -2,7 +2,7 @@
 
 Name: chromium-browser
 Version: 10.0.630.0.r%{svn_revision}
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
@@ -19,7 +19,7 @@ BuildRequires: libglib2-devel, libbzip2-devel, libz-devel, libpng-devel
 BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
 BuildRequires: libxscrnsaver-devel, libdbus-glib-devel, libcups-devel
 BuildRequires: libgnome-keyring-devel libvpx-devel libxtst-devel
-BuildRequires: libxslt-devel libxml2-devel
+BuildRequires: libxslt-devel libxml2-devel libxt-devel
 #BuildRequires: libsqlite3-devel
 #BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
