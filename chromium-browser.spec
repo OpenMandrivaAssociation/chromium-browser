@@ -1,8 +1,8 @@
-%define svn_revision 70630
+%define svn_revision 73275
 
 Name: chromium-browser
-Version: 10.0.630.0.r%{svn_revision}
-Release: %mkrel 3
+Version: 11.0.657.0.r%{svn_revision}
+Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
 License: BSD, LGPL
@@ -10,7 +10,7 @@ Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
 Source100: scoped_nsautorelease_pool.h
-Patch0: chromium-69969-skip-builder-tests.patch
+Patch0: chromium-72512-skip-builder-tests.patch
 Patch1: chromium-69746-get-vp8-cx-algo-address.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
@@ -43,10 +43,6 @@ sed -i.orig -e 's/getenv("CHROME_VERSION_EXTRA")/"%{product_vendor} %{product_ve
 cmp $FILE $FILE.orig && exit 1
 
 install -D %{_sourcedir}/scoped_nsautorelease_pool.h base/mac/scoped_nsautorelease_pool.h
-
-# Temporary fix for libvpx
-mkdir third_party/libvpx/include
-ln -s /usr/include/vpx third_party/libvpx/include
 
 
 %build
