@@ -1,7 +1,8 @@
-%define svn_revision 73275
+%define svn_revision 73462
+%define _crdir %{_libdir}/%{name}
 
 Name: chromium-browser
-Version: 11.0.657.0.r%{svn_revision}
+Version: 11.0.658.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
@@ -9,7 +10,6 @@ License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
-Source100: scoped_nsautorelease_pool.h
 Patch0: chromium-72512-skip-builder-tests.patch
 Patch1: chromium-69746-get-vp8-cx-algo-address.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -46,8 +46,8 @@ cmp $FILE $FILE.orig && exit 1
 %build
 export GYP_GENERATORS=make
 build/gyp_chromium --depth=. \
-	-D linux_sandbox_path=%{_libdir}/chromium-browser/chrome-sandbox \
-	-D linux_sandbox_chrome_path=%{_libdir}/chromium-browser/chrome \
+	-D linux_sandbox_path=%{_crdir}/chrome-sandbox \
+	-D linux_sandbox_chrome_path=%{_crdir}/chrome \
 	-D linux_link_gnome_keyring=0 \
 	-D use_gconf=0 \
 	-D werror='' \
@@ -65,23 +65,22 @@ build/gyp_chromium --depth=. \
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_libdir}/chromium-browser
-mkdir -p %{buildroot}%{_libdir}/chromium-browser/locales
-mkdir -p %{buildroot}%{_libdir}/chromium-browser/themes
+mkdir -p %{buildroot}%{_crdir}/locales
+mkdir -p %{buildroot}%{_crdir}/themes
 mkdir -p %{buildroot}%{_mandir}/man1
-install -m 755 %{_sourcedir}/chromium-wrapper %{buildroot}%{_libdir}/chromium-browser/
-install -m 755 out/Release/chrome %{buildroot}%{_libdir}/chromium-browser/
-install -m 4755 out/Release/chrome_sandbox %{buildroot}%{_libdir}/chromium-browser/chrome-sandbox
-install -m 644 out/Release/chrome.1 %{buildroot}%{_mandir}/man1/chromium-browser.1
-install -m 644 out/Release/chrome.pak %{buildroot}%{_libdir}/chromium-browser/
-install -m 755 out/Release/libffmpegsumo.so %{buildroot}%{_libdir}/chromium-browser/
-install -m 644 out/Release/locales/*.pak %{buildroot}%{_libdir}/chromium-browser/locales
-install -m 644 out/Release/xdg-settings %{buildroot}%{_libdir}/chromium-browser/
-install -m 644 out/Release/resources.pak %{buildroot}%{_libdir}/chromium-browser/
-ln -s %{_libdir}/chromium-browser/chromium-wrapper %{buildroot}%{_bindir}/chromium-browser
+install -m 755 %{_sourcedir}/chromium-wrapper %{buildroot}%{_crdir}/
+install -m 755 out/Release/chrome %{buildroot}%{_crdir}/
+install -m 4755 out/Release/chrome_sandbox %{buildroot}%{_crdir}/chrome-sandbox
+install -m 644 out/Release/chrome.1 %{buildroot}%{_mandir}/man1/%{name}.1
+install -m 644 out/Release/chrome.pak %{buildroot}%{_crdir}/
+install -m 755 out/Release/libffmpegsumo.so %{buildroot}%{_crdir}/
+install -m 644 out/Release/locales/*.pak %{buildroot}%{_crdir}/locales/
+install -m 644 out/Release/xdg-settings %{buildroot}%{_crdir}/
+install -m 644 out/Release/resources.pak %{buildroot}%{_crdir}/
+ln -s %{_crdir}/chromium-wrapper %{buildroot}%{_bindir}/%{name}
 
 find out/Release/resources/ -name "*.d" -exec rm {} \;
-cp -r out/Release/resources %{buildroot}%{_libdir}/chromium-browser/
+cp -r out/Release/resources %{buildroot}%{_crdir}
 
 # desktop file
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -99,17 +98,17 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/chromium-browser
-%{_libdir}/chromium-browser/chromium-wrapper
-%{_libdir}/chromium-browser/chrome
-%{_libdir}/chromium-browser/chrome-sandbox
-%{_libdir}/chromium-browser/chrome.pak
-%{_libdir}/chromium-browser/libffmpegsumo.so
-%{_libdir}/chromium-browser/locales
-%{_libdir}/chromium-browser/resources.pak
-%{_libdir}/chromium-browser/resources
-%{_libdir}/chromium-browser/themes
-%{_libdir}/chromium-browser/xdg-settings
-%{_mandir}/man1/chromium-browser*
+%{_bindir}/%{name}
+%{_crdir}/chromium-wrapper
+%{_crdir}/chrome
+%{_crdir}/chrome-sandbox
+%{_crdir}/chrome.pak
+%{_crdir}/libffmpegsumo.so
+%{_crdir}/locales
+%{_crdir}/resources.pak
+%{_crdir}/resources
+%{_crdir}/themes
+%{_crdir}/xdg-settings
+%{_mandir}/man1/%{name}*
 %{_datadir}/applications/*.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}.png
