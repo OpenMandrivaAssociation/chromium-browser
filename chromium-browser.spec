@@ -42,8 +42,6 @@ FILE=chrome/browser/platform_util_common_linux.cc
 sed -i.orig -e 's/getenv("CHROME_VERSION_EXTRA")/"%{product_vendor} %{product_version}"/' $FILE
 cmp $FILE $FILE.orig && exit 1
 
-install -D %{_sourcedir}/scoped_nsautorelease_pool.h base/mac/scoped_nsautorelease_pool.h
-
 
 %build
 export GYP_GENERATORS=make
