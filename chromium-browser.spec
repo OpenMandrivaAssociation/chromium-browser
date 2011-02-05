@@ -1,8 +1,8 @@
-%define svn_revision 73462
+%define svn_revision 73868
 %define _crdir %{_libdir}/%{name}
 
 Name: chromium-browser
-Version: 11.0.658.0.r%{svn_revision}
+Version: 11.0.660.0.r%{svn_revision}
 Release: %mkrel 1
 Summary: A fast webkit-based web browser
 Group: Networking/WWW
@@ -10,8 +10,7 @@ License: BSD, LGPL
 Source0: chromium-%{version}.tar.xz
 Source1: chromium-wrapper
 Source2: chromium-browser.desktop
-Patch0: chromium-72512-skip-builder-tests.patch
-Patch1: chromium-69746-get-vp8-cx-algo-address.patch
+Patch0: chromium-73868-skip-builder-tests.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bison, flex, gtk2-devel, atk-devel, libexpat-devel, gperf
 BuildRequires: libnspr-devel, libnss-devel, libalsa-devel
@@ -20,8 +19,6 @@ BuildRequires: libjpeg-devel, libmesagl-devel, libmesaglu-devel
 BuildRequires: libxscrnsaver-devel, libdbus-glib-devel, libcups-devel
 BuildRequires: libgnome-keyring-devel libvpx-devel libxtst-devel
 BuildRequires: libxslt-devel libxml2-devel libxt-devel
-#BuildRequires: libsqlite3-devel
-#BuildRequires: libicu-devel >= 4.6
 ExclusiveArch: i586 x86_64 arm
 
 %description
@@ -34,7 +31,6 @@ contain bugs or partially implemented features.
 %prep
 %setup -q -n chromium-%{svn_revision}
 %patch0 -p1 -b .skip-builder-tests
-%patch1 -p1 -b .get-vp8-cx-algo-address
 echo "%{svn_revision}" > build/LASTCHANGE.in
 
 # Hard code extra version
@@ -74,6 +70,7 @@ install -m 4755 out/Release/chrome_sandbox %{buildroot}%{_crdir}/chrome-sandbox
 install -m 644 out/Release/chrome.1 %{buildroot}%{_mandir}/man1/%{name}.1
 install -m 644 out/Release/chrome.pak %{buildroot}%{_crdir}/
 install -m 755 out/Release/libffmpegsumo.so %{buildroot}%{_crdir}/
+install -m 755 out/Release/libppGoogleNaClPluginChrome.so %{buildroot}%{_crdir}/
 install -m 644 out/Release/locales/*.pak %{buildroot}%{_crdir}/locales/
 install -m 644 out/Release/xdg-settings %{buildroot}%{_crdir}/
 install -m 644 out/Release/resources.pak %{buildroot}%{_crdir}/
@@ -104,6 +101,7 @@ rm -rf %{buildroot}
 %{_crdir}/chrome-sandbox
 %{_crdir}/chrome.pak
 %{_crdir}/libffmpegsumo.so
+%{_crdir}/libppGoogleNaClPluginChrome.so
 %{_crdir}/locales
 %{_crdir}/resources.pak
 %{_crdir}/resources
