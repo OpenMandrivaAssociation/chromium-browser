@@ -1,4 +1,2 @@
 sources:
-  "chromium-11.0.657.0.r73275.tar.xz:"	d32035d2a281428f5cdeb40861af5601fe65e894
-  "chromium-browser.desktop:"	a0b8d78f543533d612bcaa1039be86a12c82adc0
-  "chromium-wrapper:"	bcddc528f2335dc8ae30bd9ab36028ca8920c2bc
+  chromium-26.0.1410.46.tar.xz: 973753825d41b8e1e7e7eed6749099bb7be400bc
